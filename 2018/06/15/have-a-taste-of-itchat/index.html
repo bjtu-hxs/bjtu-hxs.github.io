@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TriaL" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言今天又是熊熊烈日的一天啊，只能宅在空调房里刷刷知乎。发现了一个好玩的Python接口——“itchat，它是一个开源的微信个人号接口，使用python调用微信从未如此简单”，这是官网的介绍啦。这个是itchat的Github地址，接下来便看看文档进行了一些恶趣味测试，从骚扰基友到变身聊天机器人，统计微信好友信息，最">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初尝itchat">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/have-a-taste-of-itchat/index.html">
+<meta property="og:site_name" content="TriaL">
+<meta property="og:description" content="前言今天又是熊熊烈日的一天啊，只能宅在空调房里刷刷知乎。发现了一个好玩的Python接口——“itchat，它是一个开源的微信个人号接口，使用python调用微信从未如此简单”，这是官网的介绍啦。这个是itchat的Github地址，接下来便看看文档进行了一些恶趣味测试，从骚扰基友到变身聊天机器人，统计微信好友信息，最后总结出我为什么单身。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/first.jpg">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/second.jpg">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/third.jpg">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/mengbi.jpg">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/chat-robot.jpg">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/bye-to-solo.png">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/gender-rate.png">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/province-distribution.png">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/sig-cloud-01.png">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/sig-cloud-02.png">
+<meta property="og:image" content="http://yoursite.com/images/have-a-taste-of-itchat/merged.png">
+<meta property="og:updated_time" content="2018-06-15T07:38:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初尝itchat">
+<meta name="twitter:description" content="前言今天又是熊熊烈日的一天啊，只能宅在空调房里刷刷知乎。发现了一个好玩的Python接口——“itchat，它是一个开源的微信个人号接口，使用python调用微信从未如此简单”，这是官网的介绍啦。这个是itchat的Github地址，接下来便看看文档进行了一些恶趣味测试，从骚扰基友到变身聊天机器人，统计微信好友信息，最后总结出我为什么单身。">
+<meta name="twitter:image" content="http://yoursite.com/images/have-a-taste-of-itchat/first.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/15/have-a-taste-of-itchat/"/>
+
+
+
+
+
+  <title>初尝itchat | TriaL</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/bjtu-hxs"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TriaL</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/have-a-taste-of-itchat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BJTU-HXS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TriaL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初尝itchat</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-15T15:18:01+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          	
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/15/have-a-taste-of-itchat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/15/have-a-taste-of-itchat/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/06/15/have-a-taste-of-itchat/" class="leancloud_visitors" data-flag-title="初尝itchat">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天又是熊熊烈日的一天啊，只能宅在空调房里刷刷知乎。发现了一个好玩的Python接口——“itchat，它是一个开源的微信个人号接口，使用python调用微信从未如此简单”，这是官网的介绍啦。这个是<a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="noopener">itchat的Github地址</a>，接下来便看看文档进行了一些恶趣味测试，从骚扰基友到变身聊天机器人，统计微信好友信息，最后总结出我为什么单身。</p>
+<a id="more"></a>
+<h1 id="从骚扰基友到变身聊天机器人"><a href="#从骚扰基友到变身聊天机器人" class="headerlink" title="从骚扰基友到变身聊天机器人"></a>从骚扰基友到变身聊天机器人</h1><p>仔细思考一哈，骚扰基友主要有三步：登录、获取目标、发送消息。嗯，可以开始了。</p>
+<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><p>登录有<strong>itchat.login()</strong>和<strong>itchat.auto_login()</strong>两种方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"></span><br><span class="line">itchat.login()  <span class="comment"># 登录微信，会弹出一个二维码，扫描登录网页版微信</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"></span><br><span class="line">itchat.auto_login(hotReload=<span class="keyword">True</span>)  <span class="comment"># 第一次需要扫码，之后只需要手机端确认登录</span></span><br></pre></td></tr></table></figure>
+<h2 id="获取特定好友"><a href="#获取特定好友" class="headerlink" title="获取特定好友"></a>获取特定好友</h2><p>我们要给好友发送消息，首先需要获取好友列表，然后从中选择想要发送消息的好友。使用<strong>itchat.get_friends()</strong>抓取好友列表，然后使用<strong>itchat.search_friends()</strong>获取特定的好友，这里使用备注名获取好友，然后取满足要求的第一个好友。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">friends = itchat.get_friends(update=<span class="keyword">True</span>)[<span class="number">0</span>:]  <span class="comment"># 爬取微信好友</span></span><br><span class="line"></span><br><span class="line">names = itchat.search_friends(remarkName=<span class="string">'remarkName'</span>)  <span class="comment"># 返回备注名为‘remarkName’的用户列表，可选的参数还有昵称nickName，微信号wechatAccount，唯一标识符userName</span></span><br><span class="line"></span><br><span class="line">target = names[<span class="number">0</span>]  <span class="comment"># 取列表第一个User对象，其实都是字典，属性有userName、昵称、微信号、备注名、头像url等</span></span><br></pre></td></tr></table></figure>
+<h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>发送消息主要使用<strong>itchat.send()</strong>方法，发送的内容可以是很多种形式，包括text、img、video、file，发送成功返回True，失败返回False。对于不同的消息内容也分别有对应的方法，比如send_msg()、send_file()、send_img、send_video()，但官网推荐使用<strong>send()</strong>。下面是发送消息的代码例子，最后注释部分是群发所有好友，谨慎使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">itchat.send(<span class="string">'Hello remarkName, I love U more than I can say!'</span>, toUserName=target[<span class="string">'UserName'</span>])  <span class="comment"># 发消息咯，第二个参数为userName，特定的一串hash码</span></span><br><span class="line">itchat.send(<span class="string">'你今天怎么这么奇怪？'</span>, toUserName=target[<span class="string">'UserName'</span>])  </span><br><span class="line">itchat.send(<span class="string">'怪可爱的！'</span>, toUserName=target[<span class="string">'UserName'</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment"># # 给所有好友发送消息</span></span><br><span class="line"><span class="comment"># for friend in friends[1:]:  # friends第一个元素为自己，所以去掉</span></span><br><span class="line"><span class="comment">#     itchat.send(friend['RemarkName']+',好久不联系了，甚是想念~', toUserName=friend['UserName'])</span></span><br></pre></td></tr></table></figure>
+<h2 id="骚扰一下"><a href="#骚扰一下" class="headerlink" title="骚扰一下"></a>骚扰一下</h2><p>结合上面三部分代码，就可以开始打扰一下啦，全部代码如下，<strong>需要修改remarkName为目标备注名</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"></span><br><span class="line">itchat.auto_login(hotReload=<span class="keyword">True</span>)  <span class="comment"># 第一次需要扫码，之后只需要手机端确认登录</span></span><br><span class="line"></span><br><span class="line">friends = itchat.get_friends(update=<span class="keyword">True</span>)[<span class="number">0</span>:]  <span class="comment"># 爬取微信好友</span></span><br><span class="line"></span><br><span class="line">names = itchat.search_friends(remarkName=<span class="string">'remarkName'</span>)  <span class="comment"># 返回备注名为‘remarkName’的用户列表，可选的参数还有昵称nickName，userName</span></span><br><span class="line"></span><br><span class="line">target = names[<span class="number">0</span>]  <span class="comment"># 取列表第一个User对象，其实都是字典，属性有昵称、userName、微信号、备注名、头像url等</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发消息咯，第二个参数为userName，特定的一串hash码</span></span><br><span class="line">itchat.send(<span class="string">'Hello remarkName, I love U more than I can say!'</span>, toUserName=target[<span class="string">'UserName'</span>])  </span><br><span class="line">itchat.send(<span class="string">'你今天怎么这么奇怪？'</span>, toUserName=target[<span class="string">'UserName'</span>])  </span><br><span class="line">itchat.send(<span class="string">'怪可爱的！'</span>, toUserName=target[<span class="string">'UserName'</span>])  </span><br><span class="line"></span><br><span class="line"><span class="comment"># # 给所有好友发送消息</span></span><br><span class="line"><span class="comment"># for friend in friends[1:]:  # friends第一个元素为自己，所以去掉</span></span><br><span class="line"><span class="comment">#     itchat.send(friend['RemarkName']+',好久不联系了，甚是想念~', toUserName=friend['UserName'])</span></span><br></pre></td></tr></table></figure>
+<p>首先给同在宿舍的A君来一发：</p>
+<p><img src="/images/have-a-taste-of-itchat/first.jpg" alt=""></p>
+<p>可以，认真复习的男人真是高冷，只能靠发红包来联系感情了，那就给在图书馆自习顺便看妹的H哥来一发吧：</p>
+<p><img src="/images/have-a-taste-of-itchat/second.jpg" alt=""></p>
+<p>欸，果然没有认真自习，秒回。试试我们的好朋友，小哪吒X吧：</p>
+<p><img src="/images/have-a-taste-of-itchat/third.jpg" alt=""></p>
+<p>啊，没想到被小哪吒反撩了，我果然还是<strong>太年轻</strong>。</p>
+<h2 id="实现一个聊天机器人"><a href="#实现一个聊天机器人" class="headerlink" title="实现一个聊天机器人"></a>实现一个聊天机器人</h2><p>这个时候，就想要实现一个自动聊天的机器人了。首先套用官方的自动回复模版，然后重写自己想要修改的方法，各个方法的作用我都写在了注释里，模版如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat, time</span><br><span class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])  # 消息内容为文本、地图、名片、通知、分享类型时的回复方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg.user.send(<span class="string">'%s: %s'</span> % (msg.type, msg.text))</span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register([PICTURE, RECORDING, ATTACHMENT, VIDEO])  # 消息为图片、语言、附件、视频的回复方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_files</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg.download(msg.fileName)</span><br><span class="line">    typeSymbol = &#123;</span><br><span class="line">        PICTURE: <span class="string">'img'</span>,</span><br><span class="line">        VIDEO: <span class="string">'vid'</span>, &#125;.get(msg.type, <span class="string">'fil'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'@%s@%s'</span> % (typeSymbol, msg.fileName)</span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(FRIENDS)  # 好友邀请类型回复方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_friend</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg.user.verify()</span><br><span class="line">    msg.user.send(<span class="string">'Nice to meet you!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(TEXT, isGroupChat=True)  # 群消息类型回复方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> msg.isAt:</span><br><span class="line">        msg.user.send(<span class="string">u'@%s\u2005I received: %s'</span> % (</span><br><span class="line">            msg.actualNickName, msg.text))</span><br><span class="line"></span><br><span class="line">itchat.auto_login(<span class="keyword">True</span>)  <span class="comment"># 登录</span></span><br><span class="line">itchat.run(<span class="keyword">True</span>)  <span class="comment"># 运行</span></span><br></pre></td></tr></table></figure>
+<p>模板回复Text的方法就是直接回复消息类型加消息内容，十分简单，就像小时候跟小伙伴拌嘴，你说啥他就说啥怼你，就很无聊。所以准备先修改这个方法实现自己想要的效果，哈哈哈哈哈，结果写的时候，用旧手机号注册一个小号debug太频繁，被Web微信封了，两周后解封。</p>
+<p><img src="/images/have-a-taste-of-itchat/mengbi.jpg" alt=""></p>
+<p>所以就放弃按自己想法写的计划了，直接套用这个<a href="https://github.com/xiaoxiaoyao/MyApp/blob/master/PythonApplication1/%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B0%8F%E7%BB%83%E4%B9%A0/itchat-tuling123.com-xiaobing.py" target="_blank" rel="noopener">开源的聊天机器人项目</a>，这个小项目是调用了图灵机器人的API，这个是<a href="https://www.kancloud.cn/turing/web_api/522992" target="_blank" rel="noopener">API的调用文档</a>。在回复文本信息的方法中，调用一个<strong>get_tuling_reply()</strong>方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="comment"># print(type(msg.user))</span></span><br><span class="line">    <span class="comment"># print(msg.user['NickName'])</span></span><br><span class="line">    msg.user.send(get_tuling_reply(msg))</span><br></pre></td></tr></table></figure>
+<p>get_tuling_reply()的代码，这个方法用来传递msg消息调用图灵机器人API，并处理图灵机器人不好使的异常情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_tuling_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="comment"># 如果图灵Key出现问题，那么reply将会是None</span></span><br><span class="line">    reply = get_response(msg[<span class="string">'Text'</span>])</span><br><span class="line">    <span class="comment"># a or b的意思是，如果a有内容，那么返回a，否则返回b， 为了保证在图灵Key出现问题的时候仍旧可以回复，这里设置一个默认回复</span></span><br><span class="line">    <span class="keyword">return</span> reply <span class="keyword">or</span> <span class="string">'I received: '</span> + msg.get(<span class="string">'Text'</span>)</span><br></pre></td></tr></table></figure>
+<p>其中调用了一个get_response()方法，这个方法就是用来调用图灵机器人API的，用来获取msg的回复内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_response</span><span class="params">(msg)</span>:</span></span><br><span class="line">    url = <span class="string">'http://www.tuling123.com/openapi/api'</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'key'</span>: <span class="string">'75137612d89c42f0b9d7a3f5133ec656'</span>,  <span class="comment"># 这个key可以直接拿来用，随便用，无所谓，放心公开</span></span><br><span class="line">        <span class="string">'info'</span>: msg,  <span class="comment"># 传递好友发送的消息</span></span><br><span class="line">        <span class="string">'userid'</span>: <span class="string">'pth-robot'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.post(url, data=data).json()  <span class="comment"># 接收图灵机器人返回的json文件</span></span><br><span class="line">        <span class="keyword">return</span> r.get(<span class="string">'text'</span>)  <span class="comment"># 返回图灵机器人回复的文本内容</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p>到这Text部分的修改就完成了，下面是autoreply.py的全部代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_response</span><span class="params">(msg)</span>:</span></span><br><span class="line">    url = <span class="string">'http://www.tuling123.com/openapi/api'</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'key'</span>: <span class="string">'75137612d89c42f0b9d7a3f5133ec656'</span>,  <span class="comment"># 这个key可以直接拿来用，随便用，无所谓，放心公开</span></span><br><span class="line">        <span class="string">'info'</span>: msg,</span><br><span class="line">        <span class="string">'userid'</span>: <span class="string">'pth-robot'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.post(url, data=data).json()</span><br><span class="line">        <span class="keyword">return</span> r.get(<span class="string">'text'</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_tuling_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="comment"># 如果图灵Key出现问题，那么reply将会是None</span></span><br><span class="line">    reply = get_response(msg[<span class="string">'Text'</span>])</span><br><span class="line">    <span class="comment"># a or b的意思是，如果a有内容，那么返回a，否则返回b， 为了保证在图灵Key出现问题的时候仍旧可以回复，这里设置一个默认回复</span></span><br><span class="line">    <span class="keyword">return</span> reply <span class="keyword">or</span> <span class="string">'I received: '</span> + msg.get(<span class="string">'Text'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="comment"># print(type(msg.user))</span></span><br><span class="line">    <span class="comment"># print(msg.user['NickName'])</span></span><br><span class="line">    msg.user.send(get_tuling_reply(msg))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register([PICTURE, RECORDING, ATTACHMENT, VIDEO])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_files</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg.download(msg.fileName)</span><br><span class="line">    type_symbol = &#123;</span><br><span class="line">        PICTURE: <span class="string">'img'</span>,</span><br><span class="line">        VIDEO: <span class="string">'vid'</span>, &#125;.get(msg.type, <span class="string">'fil'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'@%s@%s'</span> % (type_symbol, msg.fileName)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(FRIENDS)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_friend</span><span class="params">(msg)</span>:</span></span><br><span class="line">    msg.user.verify()</span><br><span class="line">    <span class="comment"># print(type(msg.user))</span></span><br><span class="line">    <span class="comment"># print(msg.user)</span></span><br><span class="line">    msg.user.send(<span class="string">'终于等到你!'</span>)  <span class="comment"># 在这做了简单的修改，本来是想回复带NickName的，但是NickName为空报错了。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@itchat.msg_register(TEXT, isGroupChat=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> msg.isAt:</span><br><span class="line">        msg.user.send(<span class="string">u'@%s\u2005I received: %s'</span> % (</span><br><span class="line">            msg.actualNickName, msg.text))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">itchat.auto_login(<span class="keyword">True</span>)</span><br><span class="line">itchat.run()</span><br></pre></td></tr></table></figure>
+<p>代码写好了，自然要看看效果呀，就冒着被封号的危险用大号尝试了一下，用小号给大号发消息，效果截图：</p>
+<p><img src="/images/have-a-taste-of-itchat/chat-robot.jpg" alt=""></p>
+<p>嗨呀，这么会撩，要不就用大号一直挂着好了。</p>
+<p><img src="/images/have-a-taste-of-itchat/bye-to-solo.png" alt=""></p>
+<h1 id="统计微信好友数据"><a href="#统计微信好友数据" class="headerlink" title="统计微信好友数据"></a>统计微信好友数据</h1><p>这部分主要联系一下Python画图，统计一下好友性别分布，地区分布和创建个性签名关键词云，从而在一定程度上反映我单身的原因。最后将所有好友头像拼接成一张大图，看起来不错。</p>
+<h2 id="爬取数据"><a href="#爬取数据" class="headerlink" title="爬取数据"></a>爬取数据</h2><p>统计对象是数据，首先需要爬取数据嘛，然后保存下来。先定一个主函数，登录Web微信，爬取好友信息保存到friends中，跟获取特定好友的步骤一样，然后遍历friends，将所有好友信息保存到一个list中，然后分别调用保存信息方法和下载头像方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login(hotReload=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    friends = itchat.get_friends(update=<span class="keyword">True</span>)[<span class="number">1</span>:]  <span class="comment"># 获取好友信息，除了自己</span></span><br><span class="line">    friends_list = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> friends:</span><br><span class="line">        item = &#123;<span class="string">'NickName'</span>: friend[<span class="string">'NickName'</span>], <span class="string">'HeadImgUrl'</span>: friend[<span class="string">'HeadImgUrl'</span>], <span class="string">'Sex'</span>: sex_dict[str(friend[<span class="string">'Sex'</span>])],</span><br><span class="line">                <span class="string">'Province'</span>: friend[<span class="string">'Province'</span>], <span class="string">'Signature'</span>: friend[<span class="string">'Signature'</span>], <span class="string">'UserName'</span>: friend[<span class="string">'UserName'</span>]&#125;</span><br><span class="line">        friends_list.append(item)  <span class="comment"># list添加当前好友信息</span></span><br><span class="line">        <span class="comment"># print(item)</span></span><br><span class="line"></span><br><span class="line">    save_data(friends_list)  <span class="comment"># 将好友信息写入json文件</span></span><br><span class="line">    download_images(friends_list)  <span class="comment"># 下载好友头像</span></span><br></pre></td></tr></table></figure>
+<p>然后是保存好友信息的方法，需要加载os、codecs、json模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存好友信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_data</span><span class="params">(friend_list)</span>:</span></span><br><span class="line">    data_dir = <span class="string">'./data/'</span>  <span class="comment"># 创建目录</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(data_dir):</span><br><span class="line">        os.mkdir(data_dir)</span><br><span class="line">    out_file_name = <span class="string">"./data/friends.json"</span></span><br><span class="line">    print(<span class="string">'begin to save friends data'</span>)</span><br><span class="line">    <span class="keyword">with</span> codecs.open(out_file_name, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">        json_file.write(json.dumps(friend_list, ensure_ascii=<span class="keyword">False</span>))  <span class="comment"># 写入文件</span></span><br><span class="line">    print(<span class="string">'end process'</span>)</span><br></pre></td></tr></table></figure>
+<p>下载头像的方法，需要加载os模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载好友头像</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_images</span><span class="params">(frined_list)</span>:</span></span><br><span class="line">    image_dir = <span class="string">"./images/"</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(image_dir):  <span class="comment"># 创建目录</span></span><br><span class="line">        os.mkdir(image_dir)</span><br><span class="line">    num = <span class="number">1</span></span><br><span class="line">    print(<span class="string">'begin to save friend avatar'</span>)</span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> frined_list:  <span class="comment"># 遍历保存头像</span></span><br><span class="line">        image_name = str(num) + <span class="string">'.jpg'</span></span><br><span class="line">        num += <span class="number">1</span></span><br><span class="line">        img = itchat.get_head_img(userName=friend[<span class="string">"UserName"</span>])</span><br><span class="line">        <span class="keyword">with</span> open(image_dir + image_name, <span class="string">'wb'</span>) <span class="keyword">as</span> file:</span><br><span class="line">            file.write(img)  <span class="comment"># 保存当前头像</span></span><br><span class="line">    print(<span class="string">'end process'</span>)</span><br></pre></td></tr></table></figure>
+<p>综合起来代码如下，添加了一个字典，将json中代表性别的1、2转化为男、女：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">sex_dict = &#123;<span class="string">'0'</span>: <span class="string">"其他"</span>, <span class="string">'1'</span>: <span class="string">"男"</span>, <span class="string">'2'</span>: <span class="string">"女"</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载好友头像</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_images</span><span class="params">(frined_list)</span>:</span></span><br><span class="line">    image_dir = <span class="string">"./images/"</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(image_dir):</span><br><span class="line">        os.mkdir(image_dir)</span><br><span class="line">    num = <span class="number">1</span></span><br><span class="line">    print(<span class="string">'begin to save friend avatar'</span>)</span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> frined_list:</span><br><span class="line">        image_name = str(num) + <span class="string">'.jpg'</span></span><br><span class="line">        num += <span class="number">1</span></span><br><span class="line">        img = itchat.get_head_img(userName=friend[<span class="string">"UserName"</span>])</span><br><span class="line">        <span class="keyword">with</span> open(image_dir + image_name, <span class="string">'wb'</span>) <span class="keyword">as</span> file:</span><br><span class="line">            file.write(img)</span><br><span class="line">    print(<span class="string">'end process'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存好友信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_data</span><span class="params">(friend_list)</span>:</span></span><br><span class="line">    data_dir = <span class="string">'./data/'</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(data_dir):</span><br><span class="line">        os.mkdir(data_dir)</span><br><span class="line">    out_file_name = <span class="string">"./data/friends.json"</span></span><br><span class="line">    print(<span class="string">'begin to save friends data'</span>)</span><br><span class="line">    <span class="keyword">with</span> codecs.open(out_file_name, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">        json_file.write(json.dumps(friend_list, ensure_ascii=<span class="keyword">False</span>))</span><br><span class="line">    print(<span class="string">'end process'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    itchat.auto_login(hotReload=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    friends = itchat.get_friends(update=<span class="keyword">True</span>)[<span class="number">1</span>:]  <span class="comment"># 获取好友信息，除了自己</span></span><br><span class="line">    friends_list = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> friends:</span><br><span class="line">        item = &#123;<span class="string">'NickName'</span>: friend[<span class="string">'NickName'</span>], <span class="string">'HeadImgUrl'</span>: friend[<span class="string">'HeadImgUrl'</span>], <span class="string">'Sex'</span>: sex_dict[str(friend[<span class="string">'Sex'</span>])],</span><br><span class="line">                <span class="string">'Province'</span>: friend[<span class="string">'Province'</span>], <span class="string">'Signature'</span>: friend[<span class="string">'Signature'</span>], <span class="string">'UserName'</span>: friend[<span class="string">'UserName'</span>]&#125;</span><br><span class="line"></span><br><span class="line">        friends_list.append(item)  <span class="comment"># list添加当前好友信息</span></span><br><span class="line">        <span class="comment"># print(item)</span></span><br><span class="line"></span><br><span class="line">    save_data(friends_list)  <span class="comment"># 将好友信息写入json文件</span></span><br><span class="line">    download_images(friends_list)  <span class="comment"># 下载好友头像</span></span><br></pre></td></tr></table></figure>
+<p>跑一次就可以得到想要的数据咯。</p>
+<h2 id="男女比例"><a href="#男女比例" class="headerlink" title="男女比例"></a>男女比例</h2><p>首先做一个简单的统计，得到我的票圈男女比例。首先加载数据Json文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">in_file_name = <span class="string">'./data/friends.json'</span></span><br><span class="line"><span class="keyword">with</span> codecs.open(in_file_name, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    friends = json.load(f)</span><br></pre></td></tr></table></figure>
+<p>然后对性别进行统计，使用collections中的Counter来进行计数。然后使用pyecharts进行画图，因为pyecharts需要的参数为list，而sex_counter是一个字典，所以先把它转化为两个list。转化后调用get_pie()得到饼状图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sex_counter = Counter()  <span class="comment"># 性别</span></span><br><span class="line"><span class="keyword">for</span> friend <span class="keyword">in</span> friends:</span><br><span class="line">    sex_counter[friend[<span class="string">'Sex'</span>]] += <span class="number">1</span>  <span class="comment"># 统计性别</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 性别</span></span><br><span class="line">name_list, num_list = dict2list(sex_counter)</span><br><span class="line">get_pie(<span class="string">'性别统计'</span>, name_list, num_list)</span><br></pre></td></tr></table></figure>
+<p>dict2list()：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dict2list</span><span class="params">(_dict)</span>:</span></span><br><span class="line">    name_list = []  <span class="comment"># 性别种类，男、女、其他</span></span><br><span class="line">    num_list = []  <span class="comment"># 对应数量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> _dict.items():  <span class="comment"># 添加到list中</span></span><br><span class="line">        name_list.append(key)</span><br><span class="line">        num_list.append(value)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> name_list, num_list  <span class="comment"># 返回两个list</span></span><br></pre></td></tr></table></figure>
+<p>get_pie()：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_pie</span><span class="params">(item_name, item_name_list, item_num_list)</span>:</span></span><br><span class="line">    totle = item_num_list[<span class="number">0</span>] + item_num_list[<span class="number">1</span>] + item_num_list[<span class="number">2</span>]</span><br><span class="line">    subtitle = <span class="string">"共有:%d个好友"</span> % totle</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化一个饼状图</span></span><br><span class="line">    pie = Pie(item_name, page_title=item_name, title_text_size=<span class="number">30</span>, title_pos=<span class="string">'center'</span>, \</span><br><span class="line">              subtitle=subtitle, subtitle_text_size=<span class="number">25</span>, width=<span class="number">800</span>, height=<span class="number">800</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 往饼状图添加数据</span></span><br><span class="line">    pie.add(<span class="string">""</span>, item_name_list, item_num_list, is_label_show=<span class="keyword">True</span>, center=[<span class="number">50</span>, <span class="number">45</span>], radius=[<span class="number">0</span>, <span class="number">50</span>], \</span><br><span class="line">            legend_pos=<span class="string">'left'</span>, legend_orient=<span class="string">'vertical'</span>, label_text_size=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存饼状图</span></span><br><span class="line">    analyse_path = <span class="string">'./analyse/'</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(analyse_path):</span><br><span class="line">        os.mkdir(analyse_path)</span><br><span class="line"></span><br><span class="line">    out_file_name = analyse_path + item_name + <span class="string">'.html'</span></span><br><span class="line">    <span class="comment"># print(out_file_name)</span></span><br><span class="line">    pie.render(out_file_name)</span><br></pre></td></tr></table></figure>
+<p>全部代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> Pie</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_pie</span><span class="params">(item_name, item_name_list, item_num_list)</span>:</span></span><br><span class="line">    totle = item_num_list[<span class="number">0</span>] + item_num_list[<span class="number">1</span>] + item_num_list[<span class="number">2</span>]</span><br><span class="line">    subtitle = <span class="string">"共有:%d个好友"</span> % totle</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化一个饼状图</span></span><br><span class="line">    pie = Pie(item_name, page_title=item_name, title_text_size=<span class="number">30</span>, title_pos=<span class="string">'center'</span>, \</span><br><span class="line">              subtitle=subtitle, subtitle_text_size=<span class="number">25</span>, width=<span class="number">800</span>, height=<span class="number">800</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 往饼状图添加数据</span></span><br><span class="line">    pie.add(<span class="string">""</span>, item_name_list, item_num_list, is_label_show=<span class="keyword">True</span>, center=[<span class="number">50</span>, <span class="number">45</span>], radius=[<span class="number">0</span>, <span class="number">50</span>], \</span><br><span class="line">            legend_pos=<span class="string">'left'</span>, legend_orient=<span class="string">'vertical'</span>, label_text_size=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存饼状图</span></span><br><span class="line">    analyse_path = <span class="string">'./analyse/'</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(analyse_path):</span><br><span class="line">        os.mkdir(analyse_path)</span><br><span class="line"></span><br><span class="line">    out_file_name = analyse_path + item_name + <span class="string">'.html'</span></span><br><span class="line">    <span class="comment"># print(out_file_name)</span></span><br><span class="line">    pie.render(out_file_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dict2list</span><span class="params">(_dict)</span>:</span></span><br><span class="line">    name_list = []  <span class="comment"># 性别种类，男、女、其他</span></span><br><span class="line">    num_list = []  <span class="comment"># 对应数量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> _dict.items():  <span class="comment"># 添加到list中</span></span><br><span class="line">        name_list.append(key)</span><br><span class="line">        num_list.append(value)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> name_list, num_list  <span class="comment"># 返回两个list</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    in_file_name = <span class="string">'./data/friends.json'</span></span><br><span class="line">    <span class="keyword">with</span> codecs.open(in_file_name, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        friends = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 待统计参数</span></span><br><span class="line">    sex_counter = Counter()  <span class="comment"># 性别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> friends:</span><br><span class="line">        <span class="comment"># 统计性别</span></span><br><span class="line">        sex_counter[friend[<span class="string">'Sex'</span>]] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 性别</span></span><br><span class="line">    name_list, num_list = dict2list(sex_counter)</span><br><span class="line">    get_pie(<span class="string">'性别统计'</span>, name_list, num_list)</span><br></pre></td></tr></table></figure>
+<p>跑一次就可以得到好友饼状图啦，可以看出男性好友数量为女性好友数量的1.5倍，还有6.19%的没有备注性别的好友，我果然是个死直男。</p>
+<p><img src="/images/have-a-taste-of-itchat/gender-rate.png" alt=""></p>
+<h2 id="好友省份分布"><a href="#好友省份分布" class="headerlink" title="好友省份分布"></a>好友省份分布</h2><p>与男女比例代码差不多，就直接贴代码了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> Bar</span><br><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> Grid</span><br><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> Map</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_bar</span><span class="params">(item_name, item_name_list, item_num_list)</span>:</span></span><br><span class="line">    bar = Bar(item_name, page_title=item_name, title_text_size=<span class="number">30</span>, title_pos=<span class="string">'center'</span>)</span><br><span class="line"></span><br><span class="line">    bar.add(<span class="string">""</span>, item_name_list, item_num_list, title_pos=<span class="string">'center'</span>, xaxis_interval=<span class="number">0</span>, xaxis_rotate=<span class="number">27</span>, \</span><br><span class="line">            xaxis_label_textsize=<span class="number">20</span>, yaxis_label_textsize=<span class="number">20</span>, yaxis_name_pos=<span class="string">'end'</span>, yaxis_pos=<span class="string">"%50"</span>)</span><br><span class="line">    bar.show_config()</span><br><span class="line"></span><br><span class="line">    grid = Grid(width=<span class="number">1300</span>, height=<span class="number">800</span>)</span><br><span class="line">    grid.add(bar, grid_top=<span class="string">"13%"</span>, grid_bottom=<span class="string">"23%"</span>, grid_left=<span class="string">"15%"</span>, grid_right=<span class="string">"15%"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存柱状图</span></span><br><span class="line">    analyse_path = <span class="string">'./analyse/'</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(analyse_path):</span><br><span class="line">        os.mkdir(analyse_path)</span><br><span class="line">    out_file_name = analyse_path + item_name + <span class="string">'.html'</span></span><br><span class="line">    grid.render(out_file_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为只取前15个人数最多的省份，Counter返回的是一个list，所以转化方法不一样</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counter2list</span><span class="params">(_counter)</span>:</span>  </span><br><span class="line">    name_list = []</span><br><span class="line">    num_list = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> _counter:</span><br><span class="line">        name_list.append(item[<span class="number">0</span>])</span><br><span class="line">        num_list.append(item[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> name_list, num_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    in_file_name = <span class="string">'./data/friends.json'</span></span><br><span class="line">    <span class="keyword">with</span> codecs.open(in_file_name, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        friends = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 待统计参数</span></span><br><span class="line">    Province_counter = Counter()  <span class="comment"># 省份</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> friends:</span><br><span class="line">        <span class="comment"># 省份</span></span><br><span class="line">        <span class="keyword">if</span> friend[<span class="string">'Province'</span>] != <span class="string">""</span>:</span><br><span class="line">            Province_counter[friend[<span class="string">'Province'</span>]] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 省份前15</span></span><br><span class="line">    name_list, num_list = counter2list(Province_counter.most_common(<span class="number">15</span>))</span><br><span class="line">    get_bar(<span class="string">'地区统计'</span>, name_list, num_list)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/images/have-a-taste-of-itchat/province-distribution.png" alt=""></p>
+<h2 id="签名云"><a href="#签名云" class="headerlink" title="签名云"></a>签名云</h2><p>基本步骤与上面一样，主要需要使用一个叫做jieba的分词包来进行中文分词，然后发现出现了class、emoji、span等词，所以先把它们去除掉，再进行分词，也就是去除停用词。</p>
+<p><img src="/images/have-a-taste-of-itchat/sig-cloud-01.png" alt=""></p>
+<p>全部代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> WordCloud</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">word_cloud</span><span class="params">(item_name, item_name_list, item_num_list, word_size_range)</span>:</span></span><br><span class="line">    wordcloud = WordCloud(width=<span class="number">1400</span>, height=<span class="number">900</span>)</span><br><span class="line"></span><br><span class="line">    wordcloud.add(<span class="string">""</span>, item_name_list, item_num_list, word_size_range=word_size_range, shape=<span class="string">'pentagon'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 保存云图</span></span><br><span class="line">    analyse_path = <span class="string">'./analyse/'</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(analyse_path):</span><br><span class="line">        os.mkdir(analyse_path)</span><br><span class="line">    out_file_name = analyse_path + item_name + <span class="string">'.html'</span></span><br><span class="line">    wordcloud.render(out_file_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_tag</span><span class="params">(text, cnt)</span>:</span></span><br><span class="line">    print(<span class="string">'正在分析句子:'</span>, text)</span><br><span class="line">    tag_list = jieba.analyse.extract_tags(text)  <span class="comment"># jieba分词</span></span><br><span class="line">    <span class="keyword">for</span> tag <span class="keyword">in</span> tag_list:</span><br><span class="line">        cnt[tag] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counter2list</span><span class="params">(_counter)</span>:</span></span><br><span class="line">    name_list = []</span><br><span class="line">    num_list = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> _counter:</span><br><span class="line">        name_list.append(item[<span class="number">0</span>])</span><br><span class="line">        num_list.append(item[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> name_list, num_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    in_file_name = <span class="string">'./data/friends.json'</span></span><br><span class="line">    <span class="keyword">with</span> codecs.open(in_file_name, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        friends = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 待统计参数</span></span><br><span class="line">    Signature_counter = Counter()  <span class="comment"># 个性签名关键词</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> friend <span class="keyword">in</span> friends:</span><br><span class="line">        <span class="comment"># 出去停用词，emoji、class、span</span></span><br><span class="line">        signature = friend[<span class="string">"Signature"</span>].strip().replace(<span class="string">"span"</span>, <span class="string">""</span>).replace(<span class="string">"class"</span>, <span class="string">""</span>).replace(<span class="string">"emoji"</span>, <span class="string">""</span>)</span><br><span class="line">        <span class="comment"># 签名关键词提取</span></span><br><span class="line">        get_tag(signature, Signature_counter)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 微信好友签名前200个关键词</span></span><br><span class="line">    name_list, num_list = counter2list(Signature_counter.most_common(<span class="number">200</span>))</span><br><span class="line">    word_cloud(<span class="string">'微信好友签名关键词'</span>, name_list, num_list, [<span class="number">20</span>, <span class="number">100</span>])</span><br></pre></td></tr></table></figure>
+<p>最终结果如下，在一堆向上和小清新的关键字里面，让我眼前一亮的居然是第二行的dotaer，我果然是凭实力单的身。</p>
+<p><img src="/images/have-a-taste-of-itchat/sig-cloud-02.png" alt=""></p>
+<h2 id="合成头像"><a href="#合成头像" class="headerlink" title="合成头像"></a>合成头像</h2><p>最后将所有好友头像聚合为一张图，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> PIL.Image</span><br><span class="line"></span><br><span class="line">print(<span class="string">"正在合成头像"</span>)</span><br><span class="line"><span class="comment"># 对用户头像进行压缩</span></span><br><span class="line">photo_width = <span class="number">200</span></span><br><span class="line">photo_height = <span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图像路径list</span></span><br><span class="line">photo_path_list = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前路径</span></span><br><span class="line">dirName = os.getcwd() + <span class="string">'/images'</span></span><br><span class="line"><span class="comment"># print(dirName)</span></span><br><span class="line"><span class="comment"># 遍历文件夹获取所有图片的路径</span></span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(dirName):</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">"jpg"</span> <span class="keyword">in</span> file:</span><br><span class="line">            photo_path_list.append(os.path.join(root, file))</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(photo_path_list)</span></span><br><span class="line">pic_num = len(photo_path_list)</span><br><span class="line"><span class="comment"># 每行每列显示图片数量</span></span><br><span class="line">line_max = int(math.sqrt(pic_num))</span><br><span class="line">row_max = int(math.sqrt(pic_num))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> line_max &gt; <span class="number">20</span>:</span><br><span class="line">    line_max = <span class="number">20</span></span><br><span class="line">    row_max = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">num = <span class="number">0</span></span><br><span class="line">pic_max = line_max * row_max</span><br><span class="line"></span><br><span class="line">toImage = PIL.Image.new(<span class="string">'RGBA'</span>, (photo_width * line_max, photo_height * row_max))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, row_max):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, line_max):</span><br><span class="line"></span><br><span class="line">        pic_fole_head = PIL.Image.open(photo_path_list[num])</span><br><span class="line">        width, height = pic_fole_head.size</span><br><span class="line"></span><br><span class="line">        tmppic = pic_fole_head.resize((photo_width, photo_height))</span><br><span class="line"></span><br><span class="line">        loc = (int(j % row_max * photo_width), int(i % row_max * photo_height))</span><br><span class="line">        toImage.paste(tmppic, loc)</span><br><span class="line">        num = num + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> num &gt;= len(photo_path_list):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> num &gt;= pic_max:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">print(toImage.size)</span><br><span class="line">toImage.save(<span class="string">'./analyse/merged.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/images/have-a-taste-of-itchat/merged.png" alt=""></p>
+<h1 id="Python包清单"><a href="#Python包清单" class="headerlink" title="Python包清单"></a>Python包清单</h1><p>本文全过程在Python3环境下进行，主要依赖包如下：</p>
+<ul>
+<li>pillow: pip install pillow</li>
+<li>pyecharts: pip install pyecharts</li>
+<li>itchat: pip install itchat</li>
+<li>jieba: pip install jieba</li>
+</ul>
+<h1 id="我为什么单身"><a href="#我为什么单身" class="headerlink" title="我为什么单身"></a>我为什么单身</h1><p>可能是太帅了吧，哈哈哈，</p>
+<p>应该是太厚脸皮了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/Wechat-qrcode.jpg" alt="BJTU-HXS wechat" style="width: 200px; max-width: 100%;"/>
+    <div>海内存知己，天涯若比邻。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/12/leancloud-config/" rel="next" title="Hexo博客Next主题添加统计文章阅读量功能">
+                <i class="fa fa-chevron-left"></i> Hexo博客Next主题添加统计文章阅读量功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/05/xrun-error-solution/" rel="prev" title="xcrun: error: invalid active developer path错误解决方案">
+                xcrun: error: invalid active developer path错误解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="BJTU-HXS" />
+            
+              <p class="site-author-name" itemprop="name">BJTU-HXS</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/bjtu-hxs" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="xishuang_hu@foxmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从骚扰基友到变身聊天机器人"><span class="nav-number">2.</span> <span class="nav-text">从骚扰基友到变身聊天机器人</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录"><span class="nav-number">2.1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取特定好友"><span class="nav-number">2.2.</span> <span class="nav-text">获取特定好友</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送消息"><span class="nav-number">2.3.</span> <span class="nav-text">发送消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#骚扰一下"><span class="nav-number">2.4.</span> <span class="nav-text">骚扰一下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现一个聊天机器人"><span class="nav-number">2.5.</span> <span class="nav-text">实现一个聊天机器人</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#统计微信好友数据"><span class="nav-number">3.</span> <span class="nav-text">统计微信好友数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取数据"><span class="nav-number">3.1.</span> <span class="nav-text">爬取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#男女比例"><span class="nav-number">3.2.</span> <span class="nav-text">男女比例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#好友省份分布"><span class="nav-number">3.3.</span> <span class="nav-text">好友省份分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#签名云"><span class="nav-number">3.4.</span> <span class="nav-text">签名云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合成头像"><span class="nav-number">3.5.</span> <span class="nav-text">合成头像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python包清单"><span class="nav-number">4.</span> <span class="nav-text">Python包清单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我为什么单身"><span class="nav-number">5.</span> <span class="nav-text">我为什么单身</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BJTU-HXS</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+<span class="post-meta-divider">|</span>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共32.1k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  <script type="text/javascript">
+	var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#vcomments' ,
+        verify: false,
+        notify: false,
+        appId: '2PCEPT8cFccmrswSbO9EUEyy-gzGzoHsz',
+        appKey: '8wWwCiqRtqxlobI2X96kdQlF',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("2PCEPT8cFccmrswSbO9EUEyy-gzGzoHsz", "8wWwCiqRtqxlobI2X96kdQlF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
