@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png">
-<meta property="og:updated_time" content="2019-03-30T01:22:09.819Z">
+<meta property="og:updated_time" content="2019-03-30T01:32:52.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode——[141]Linked List Cycle环形链表">
 <meta name="twitter:description" content="题目给定一个链表，判断链表中是否有环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 示例 1： 123输入：head = [3,2,0,-4], pos = 1输出：true解释：链表中有一个环，其尾部连接到第二个节点。  示例 2： 123输入：head = [1,2], pos = 0输出：t">
@@ -379,7 +379,8 @@
 <p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png" alt="img"></p>
 <p><strong>Follow up:</strong></p>
 <p>Can you solve it using <em>O(1)</em> (i.e. constant) memory?</p>
-<h1 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h1><p>使用快慢指针，快指针fast一次循环比慢指针slow多走一步，如果存在环，则快慢指针总会相遇。</p>
+<h1 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h1><p>使用快慢指针，快指针fast一次循环比慢指针slow多走一步，如果存在环，则快慢指针总会相遇。这段代码跑了<strong>1ms</strong>，超过了<strong>72.81%</strong>的Java提交。</p>
+<p>题目中的pos变量似乎没有什么用处。如果是要求pos的值的话，可以用HashMap，ListNode的HashCode为Key，索引为Value，一次遍历，HashMap中存在当前ListNode的键值对则返回对应Value，ListNode为空则不存在环，O(n)时间复杂度。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  	<span class="comment">// Method 1 1ms 72.81%</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="keyword">null</span>) &#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            <span class="keyword">if</span> (fast == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -428,6 +429,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/30/leetcode-234/" rel="prev" title="leetcode——[234]Palindrome Linked List回文链表">
+                leetcode——[234]Palindrome Linked List回文链表 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -510,7 +515,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -625,7 +630,7 @@
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共32.1k字</span>
+  <span class="post-count">博客全站共32.7k字</span>
 </div>
         
 
