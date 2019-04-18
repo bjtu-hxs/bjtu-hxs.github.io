@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="题目给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。 例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。 注意事项:  必须在原数组上操作，不要为一个新数组分配额外空间。 尽量减少操作总数。">
+<meta name="description" content="题目在一个小镇里，按从 1 到 N 标记了 N 个人。传言称，这些人中有一个是小镇上的秘密法官。 如果小镇的法官真的存在，那么：  小镇的法官不相信任何人。 每个人（除了小镇法官外）都信任小镇的法官。 只有一个人同时满足属性 1 和属性 2 。  给定数组 trust，该数组由信任对 trust[i] = [a, b]">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode——[283]Move Zeroes移动零">
-<meta property="og:url" content="http://yoursite.com/2018/04/20/leetcode-283/index.html">
+<meta property="og:title" content="leetcode——[997]Find the Town Judge找到小镇的法官">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/leetcode-997/index.html">
 <meta property="og:site_name" content="TriaL">
-<meta property="og:description" content="题目给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。 例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。 注意事项:  必须在原数组上操作，不要为一个新数组分配额外空间。 尽量减少操作总数。">
+<meta property="og:description" content="题目在一个小镇里，按从 1 到 N 标记了 N 个人。传言称，这些人中有一个是小镇上的秘密法官。 如果小镇的法官真的存在，那么：  小镇的法官不相信任何人。 每个人（除了小镇法官外）都信任小镇的法官。 只有一个人同时满足属性 1 和属性 2 。  给定数组 trust，该数组由信任对 trust[i] = [a, b] 组成，表示标记为 a 的人信任标记为 b 的人。 如果小镇存在秘密法官并且可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T02:36:11.000Z">
+<meta property="og:updated_time" content="2019-04-18T08:55:24.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode——[283]Move Zeroes移动零">
-<meta name="twitter:description" content="题目给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。 例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。 注意事项:  必须在原数组上操作，不要为一个新数组分配额外空间。 尽量减少操作总数。">
+<meta name="twitter:title" content="leetcode——[997]Find the Town Judge找到小镇的法官">
+<meta name="twitter:description" content="题目在一个小镇里，按从 1 到 N 标记了 N 个人。传言称，这些人中有一个是小镇上的秘密法官。 如果小镇的法官真的存在，那么：  小镇的法官不相信任何人。 每个人（除了小镇法官外）都信任小镇的法官。 只有一个人同时满足属性 1 和属性 2 。  给定数组 trust，该数组由信任对 trust[i] = [a, b] 组成，表示标记为 a 的人信任标记为 b 的人。 如果小镇存在秘密法官并且可以">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/20/leetcode-283/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/leetcode-997/"/>
 
 
 
 
 
-  <title>leetcode——[283]Move Zeroes移动零 | TriaL</title>
+  <title>leetcode——[997]Find the Town Judge找到小镇的法官 | TriaL</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/20/leetcode-283/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/leetcode-997/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="BJTU-HXS">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode——[283]Move Zeroes移动零</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode——[997]Find the Town Judge找到小镇的法官</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T20:15:24+08:00">
-                2018-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T16:55:24+08:00">
+                2019-04-18
               </time>
             
 
@@ -305,8 +305,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/20/leetcode-283/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/20/leetcode-283/" itemprop="commentCount"></span>
+                <a href="/2019/04/18/leetcode-997/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/18/leetcode-997/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -314,7 +314,7 @@
 
           
           
-             <span id="/2018/04/20/leetcode-283/" class="leancloud_visitors" data-flag-title="leetcode——[283]Move Zeroes移动零">
+             <span id="/2019/04/18/leetcode-997/" class="leancloud_visitors" data-flag-title="leetcode——[997]Find the Town Judge找到小镇的法官">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -345,24 +345,65 @@
       
 
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个数组 <code>nums</code>, 编写一个函数将所有 <code>0</code> 移动到它的末尾，同时保持非零元素的相对顺序。</p>
-<p>例如， 定义 <code>nums = [0, 1, 0, 3, 12]</code>，调用函数之后， <code>nums</code> 应为 <code>[1, 3, 12, 0, 0]</code>。</p>
-<p><strong>注意事项</strong>:</p>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>在一个小镇里，按从 <code>1</code> 到 <code>N</code> 标记了 <code>N</code> 个人。传言称，这些人中有一个是小镇上的秘密法官。</p>
+<p>如果小镇的法官真的存在，那么：</p>
 <ol>
-<li>必须在原数组上操作，不要为一个新数组分配额外空间。</li>
-<li>尽量减少操作总数。</li>
+<li>小镇的法官不相信任何人。</li>
+<li>每个人（除了小镇法官外）都信任小镇的法官。</li>
+<li>只有一个人同时满足属性 1 和属性 2 。</li>
 </ol>
+<p>给定数组 <code>trust</code>，该数组由信任对 <code>trust[i] = [a, b]</code> 组成，表示标记为 <code>a</code> 的人信任标记为 <code>b</code> 的人。</p>
+<p>如果小镇存在秘密法官并且可以确定他的身份，请返回该法官的标记。否则，返回 <code>-1</code>。 </p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 2, trust = [[1,2]]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 3, trust = [[1,3],[2,3]]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>Given an array <code>nums</code>, write a function to move all <code>0</code>‘s to the end of it while maintaining the relative order of the non-zero elements.</p>
-<p>For example, given <code>nums = [0, 1, 0, 3, 12]</code>, after calling your function, <code>nums</code> should be <code>[1, 3, 12, 0, 0]</code>.</p>
-<p><strong>Note</strong>:</p>
+<p>示例 3：**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 3, trust = [[1,3],[2,3],[3,1]]</span><br><span class="line">输出：-1</span><br></pre></td></tr></table></figure>
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 3, trust = [[1,2],[2,3]]</span><br><span class="line">输出：-1</span><br></pre></td></tr></table></figure>
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
 <ol>
-<li>You must do this <strong>in-place</strong> without making a copy of the array.</li>
-<li>Minimize the total number of operations.</li>
+<li><code>1 &lt;= N &lt;= 1000</code></li>
+<li><code>trust.length &lt;= 10000</code></li>
+<li><code>trust[i]</code> 是完全不同的</li>
+<li><code>trust[i][0] != trust[i][1]</code></li>
+<li><code>1 &lt;= trust[i][0], trust[i][1] &lt;= N</code></li>
 </ol>
-<h1 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h1><p>循环遍历数组，用一个int number记录0的个数，number初始值为0，遇到非0元素则向前移动number个单位，遇到0则number加一。一次循环遍历之后，将数组后number个元素均赋值为0。这段代码时间复杂度为O(n)，空间复杂度为O(1)，跑了<strong>2ms</strong>，超过了100%的java提交。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Method_01  2ms  100%</span></span><br><span class="line">        <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                number++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                nums[i - number] = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt;= nums.length - number; i--) &#123;</span><br><span class="line">            nums[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>第一次“首发破百”，直接code出了最佳方案，当然这也是因为这道题非常简单！也算是coding路上的一种激励吧！</p>
+<p>In a town, there are <code>N</code> people labelled from <code>1</code> to <code>N</code>.  There is a rumor that one of these people is secretly the town judge.</p>
+<p>If the town judge exists, then:</p>
+<ol>
+<li>The town judge trusts nobody.</li>
+<li>Everybody (except for the town judge) trusts the town judge.</li>
+<li>There is exactly one person that satisfies properties 1 and 2.</li>
+</ol>
+<p>You are given <code>trust</code>, an array of pairs <code>trust[i] = [a, b]</code> representing that the person labelled <code>a</code>trusts the person labelled <code>b</code>.</p>
+<p>If the town judge exists and can be identified, return the label of the town judge.  Otherwise, return <code>-1</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 2, trust = [[1,2]]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 3, trust = [[1,3],[2,3]]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 3, trust = [[1,3],[2,3],[3,1]]</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 3, trust = [[1,2],[2,3]]</span><br><span class="line">Output: -1</span><br></pre></td></tr></table></figure>
+<p><strong>Example 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>1 &lt;= N &lt;= 1000</code></li>
+<li><code>trust.length &lt;= 10000</code></li>
+<li><code>trust[i]</code> are all different</li>
+<li><code>trust[i][0] != trust[i][1]</code></li>
+<li><code>1 &lt;= trust[i][0], trust[i][1] &lt;= N</code></li>
+</ol>
+<h1 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h1><p>法官被N-1个村民信任（入度为N-1），法官不信任任何人（出度为0）。遍历一次trust，用一个二维数组记录每个村民的信任出入度，出度为0，入度为N-1的为法官。这段代码跑了<strong>5ms</strong>，超过了<strong>99.24%</strong>的Java提交。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Method 1 5ms 99.24%</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findJudge</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span>[][] trust)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] people = <span class="keyword">new</span> <span class="keyword">int</span>[N][<span class="number">2</span>];	<span class="comment">// store the indegree and outdegree of each person</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] trus : trust) &#123;</span><br><span class="line">            people[trus[<span class="number">0</span>]-<span class="number">1</span>][<span class="number">0</span>]++;</span><br><span class="line">            people[trus[<span class="number">1</span>]-<span class="number">1</span>][<span class="number">1</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(people[i][<span class="number">0</span>] == <span class="number">0</span> &amp;&amp; people[i][<span class="number">1</span>] == N - <span class="number">1</span>) &#123;	<span class="comment">// indegree == 0 &amp; outdegree == N-1</span></span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>节省空间开支，除了法官村民们都有信任的人，出度&gt;0，入度-出度&lt;N-1，只需要一个一维数组来保存每个村民的入度与出度差，只有法官的入度-出度=N-1。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Method 1 5ms 99.24%</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findJudge</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span>[][] trust)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] people = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] person : trust) &#123;</span><br><span class="line">            <span class="comment">// judge doesn't trust anyone</span></span><br><span class="line">            people[person[<span class="number">0</span>]-<span class="number">1</span>]--;</span><br><span class="line">            <span class="comment">// people all except judge trust judge</span></span><br><span class="line">            people[person[<span class="number">1</span>]-<span class="number">1</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(people[i] == N - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -401,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/20/leetcode-066/" rel="next" title="leetcode——[66]Plus One加一">
-                <i class="fa fa-chevron-left"></i> leetcode——[66]Plus One加一
+              <a href="/2019/04/18/leetcode-013/" rel="next" title="leetcode——[013]Roman To Integer罗马数字转整数">
+                <i class="fa fa-chevron-left"></i> leetcode——[013]Roman To Integer罗马数字转整数
               </a>
             
           </div>
@@ -411,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/23/leetcode-048/" rel="prev" title="leetcode——[048]Rotate Image旋转图像">
-                leetcode——[048]Rotate Image旋转图像 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/18/leetcode-852/" rel="prev" title="leetcode——[852]Peak Index in a Mountain Array山脉数组的峰顶索引">
+                leetcode——[852]Peak Index in a Mountain Array山脉数组的峰顶索引 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -565,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题方法"><span class="nav-number">2.</span> <span class="nav-text">解题方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题方法"><span class="nav-number">2.</span> <span class="nav-text">解题方法</span></a></li></ol></div>
             
 
           </div>
