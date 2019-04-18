@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="TriaL">
 <meta property="og:description" content="题目罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。 12345678字符          数值I             1V             5X             10L             50C             100D             500M             1000 例如， 罗马数字 2 写做 II ，即为两个并列的 1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-18T06:16:20.867Z">
+<meta property="og:updated_time" content="2019-04-18T06:31:49.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode——[012]Integer to Roman整数转罗马数字">
 <meta name="twitter:description" content="题目罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。 12345678字符          数值I             1V             5X             10L             50C             100D             500M             1000 例如， 罗马数字 2 写做 II ，即为两个并列的 1">
@@ -387,7 +387,7 @@
 <p><strong>Example 5:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 1994</span><br><span class="line">Output: &quot;MCMXCIV&quot;</span><br><span class="line">Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.</span><br></pre></td></tr></table></figure>
 <h1 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h1><p>用两个数组保存罗马数字单位和对应的十进制单位，将num从最大单位逐步递减，每次相减，结果字符串加上对应罗马单位，知道num被减为0。因为会频繁对结果字符串进行修改，所以使用<code>StringBuilder</code>而不是直接使用<code>String</code>。这段代码跑了<strong>45ms</strong>，超过了<strong>98.87%</strong>的Java提交。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class Solution &#123;</span><br><span class="line">		<span class="comment">// Method 1 45ms 98.87%</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dimentions = &#123;<span class="number">1000</span>, <span class="number">900</span>, <span class="number">500</span>, <span class="number">400</span>, <span class="number">100</span>, <span class="number">90</span>, <span class="number">50</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        String[] strings = &#123;<span class="string">"M"</span>, <span class="string">"CM"</span>, <span class="string">"D"</span>, <span class="string">"CD"</span>, <span class="string">"C"</span>, <span class="string">"XC"</span>, <span class="string">"L"</span>, <span class="string">"XL"</span>, <span class="string">"X"</span>, <span class="string">"IX"</span>, <span class="string">"V"</span>, <span class="string">"IV"</span>, <span class="string">"I"</span>&#125;;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();    <span class="comment">// store result StringBuilder</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dimentions.length; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (num &gt;= dimentions[i]) &#123;</span><br><span class="line">                num -= dimentions[i];    <span class="comment">// subtract decimal dimension</span></span><br><span class="line">                res.append(strings[i]);    <span class="comment">// the result string append Roman dimension</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();    <span class="comment">// transform into String</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class Solution &#123;</span><br><span class="line">		<span class="comment">// Method 1 45ms 98.87%</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dimensions = &#123;<span class="number">1000</span>, <span class="number">900</span>, <span class="number">500</span>, <span class="number">400</span>, <span class="number">100</span>, <span class="number">90</span>, <span class="number">50</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        String[] strings = &#123;<span class="string">"M"</span>, <span class="string">"CM"</span>, <span class="string">"D"</span>, <span class="string">"CD"</span>, <span class="string">"C"</span>, <span class="string">"XC"</span>, <span class="string">"L"</span>, <span class="string">"XL"</span>, <span class="string">"X"</span>, <span class="string">"IX"</span>, <span class="string">"V"</span>, <span class="string">"IV"</span>, <span class="string">"I"</span>&#125;;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();    <span class="comment">// store result StringBuilder</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dimensions.length; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (num &gt;= dimensions[i]) &#123;</span><br><span class="line">                num -= dimensions[i];    <span class="comment">// subtract decimal dimension</span></span><br><span class="line">                res.append(strings[i]);    <span class="comment">// the result string append Roman dimension</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res.toString();    <span class="comment">// transform into String</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -435,6 +435,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/leetcode-013/" rel="prev" title="leetcode——[013]Roman To Integer罗马数字转整数">
+                leetcode——[013]Roman To Integer罗马数字转整数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -632,7 +636,7 @@
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共37.6k字</span>
+  <span class="post-count">博客全站共38.6k字</span>
 </div>
         
 
