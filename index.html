@@ -342,25 +342,16 @@
 
       
         
-          
-            <h1 id="Command-“python-setup-py-egg-info”-failed-with-error-code-1"><a href="#Command-“python-setup-py-egg-info”-failed-with-error-code-1" class="headerlink" title="Command “python setup.py egg_info” failed with error code 1"></a>Command “python setup.py egg_info” failed with error code 1</h1><p>原文链接：<a href="https://www.cnblogs.com/qq952693358/p/9592300.html" target="_blank" rel="noopener">解决 Command “python setup.py egg_info” failed with error code 1 问题</a></p>
-<p>使用pip安装shadowsocks，执行<code>pip install -r shadowsocks</code>时报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Command &quot;python setup.py egg_info&quot; failed with error code 1</span><br></pre></td></tr></table></figure>
-<p>解决方法是更新 setuptools 和 pip：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade setuptools</span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1 id="undefined-symbol-EVP-CIPHER-CTX-cleanup"><a href="#undefined-symbol-EVP-CIPHER-CTX-cleanup" class="headerlink" title="undefined symbol: EVP_CIPHER_CTX_cleanup"></a>undefined symbol: EVP_CIPHER_CTX_cleanup</h1><p>原文链接：<a href="https://blog.csdn.net/blackfrog_unique/article/details/60320737" target="_blank" rel="noopener">Kali2.0 update到最新版本后安装shadowsocks服务报错问题</a></p>
-<ol>
-<li>用vim打开文件：vim /usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py (该路径请根据自己的系统情况自行修改，如果不知道该文件在哪里的话，可以使用find命令查找文件位置)</li>
-<li>跳转到52行（shadowsocks2.8.2版本，其他版本搜索一下cleanup）</li>
-<li>进入编辑模式</li>
-<li>将第52行libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,)<br>改为libcrypto.EVP_CIPHER_CTX_reset.argtypes = (c_void_p,)</li>
-<li>再次搜索cleanup（全文件共2处，此处位于111行），将libcrypto.EVP_CIPHER_CTX_cleanup(self._ctx)<br>改为libcrypto.EVP_CIPHER_CTX_reset(self._ctx)</li>
-<li>保存并退出</li>
-<li>启动shadowsocks服务：service shadowsocks start 或 sslocal -c ss配置文件目录</li>
-<li>问题解决</li>
-</ol>
-
-          
+          <h1 id="我的环境"><a href="#我的环境" class="headerlink" title="我的环境"></a>我的环境</h1><p>系统：Win10</p>
+<p>SS版本：4.1.5</p>
+<p>Python 版本：3.6</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/26/ss-pip-install-err-and-undefined-symbol/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
