@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-27T02:44:01.540Z</updated>
+  <updated>2019-07-29T10:21:28.078Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Access denied for user &#39;xxxx&#39;@&#39;localhost&#39; (using password&amp;#58 YES)</title>
+    <link href="http://yoursite.com/2019/07/29/mysql-access-denied/"/>
+    <id>http://yoursite.com/2019/07/29/mysql-access-denied/</id>
+    <published>2019-07-29T10:19:14.000Z</published>
+    <updated>2019-07-29T10:21:28.078Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>版本：MySQL 5.6</p><p>新建一个用户且正确授权之后，登陆失败报错：</p><p><strong>access denied for user ‘xxxx’@’localhost’ (using password: YES)</strong></p><p>新建用户操作：</p><p><strong>CREATE USER ‘xxxx’ IDENTIFIED BY ‘xxxx’;</strong></p><p>授权操作：</p><p><strong>GRANT ALL PRIVILEGES ON `TargetTable`.* TO ‘xxxx’@’%’;</strong></p><h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>存在匿名用户：’’@’localhost’ identified by ‘’。</p><p>MySQL 连接时从 mysql.user 表中匹配主机和用户名，将所有符合条件的条目排序， 选取排序第一的条目进行验证，主机名和用户名的排序规则: </p><ol><li>主机名优先用户名;</li><li>具体主机名优先所有主机%; </li><li>具体用户名优先匿名用户’’； </li><li>空字符串’’能匹配所有用户名，’%’能匹配所有主机名。 </li></ol><p>在本地使用MySQL Installer安装MySQL Server 5.6时，在本地自动新建了一个匿名用户，查看mysql.user表可以看到有一个用户名为空字符串的用户：</p><p><strong>SELECT * FROM `mysql`.`user`;</strong></p><p><img src="/images/mysql-access-denied/anonymous_user.png" alt=""></p><p>所以在登陆 xxxx@localhost 时，用户表中有两个条目匹配成功: </p><ul><li>‘’@’localhost’</li><li>‘xxxx’@’%’ (%所有主机) </li></ul><p>此时，匿名用户的主机更精确，所以排在想要登录的’xxxx’前面，MySQL 会用匿 名用户的账号’’@’localhost’ identified by ‘’来进行验证,这个时候输入的密码 是’xxxx’，匿名用户的密码是空字符串’’，所以会报拒绝访问，登录失败;这个时 候我输入的密码如果是空字符串’’的话，反而能够登录成功。 </p><p>有趣的是，然而这样虽然登录成功了，但是登陆的账号并不是想登陆的’xxxx’，而是匿名用户。</p><p>查看登录时指定的用户和当前登录的用户，就能发现，登录时指定的用户是’xxxx’，但是登录的却是匿名用户。</p><p><strong>SELECT USER(), CURRENT_USER();</strong></p><p><img src="/images/mysql-access-denied/error_user_logined.png" alt=""></p><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>删除本地的匿名用户。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;版本：MySQL 5.6&lt;/p&gt;
+&lt;p&gt;新建一个用户且正确授权之后，登陆失败报错：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;access denied
+      
+    
+    </summary>
+    
+    
+      <category term="Database" scheme="http://yoursite.com/tags/Database/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode——[119]Pascal&#39;s Triangle II杨辉三角 II</title>
@@ -521,29 +546,6 @@
     
     
       <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo Next主题添加Mathjax渲染数学公式</title>
-    <link href="http://yoursite.com/2019/04/03/hexo-add-mathjax/"/>
-    <id>http://yoursite.com/2019/04/03/hexo-add-mathjax/</id>
-    <published>2019-04-03T05:18:33.000Z</published>
-    <updated>2019-04-03T05:23:31.097Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="修改-config-yml"><a href="#修改-config-yml" class="headerlink" title="修改_config.yml"></a>修改_config.yml</h1><p>修改Next主题配置文件_config.yml，修改第三方服务配置mathjax配置选项：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: true</span><br></pre></td></tr></table></figure><h1 id="页面启用mathjax"><a href="#页面启用mathjax" class="headerlink" title="页面启用mathjax"></a>页面启用mathjax</h1><p>在需要渲染数学公式的Markdown文件的Front-matter中mathjax设置为true:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------</span><br><span class="line">title: Hexo Next主题添加Mathjax渲染数学公式</span><br><span class="line">mathjax: true</span><br><span class="line">tags:</span><br><span class="line">  - Hexo</span><br><span class="line">------</span><br></pre></td></tr></table></figure><h1 id="渲染效果"><a href="#渲染效果" class="headerlink" title="渲染效果"></a>渲染效果</h1><p>这样，页面就会加载mathjax渲染数学公式了：</p><p>$y = ax + b$</p><p>$y = ax^2$</p><p>$y=\sum_{i=1}^ni​$</p><p>$\frac{\partial u}{\partial t}<br>= h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;修改-config-yml&quot;&gt;&lt;a href=&quot;#修改-config-yml&quot; class=&quot;headerlink&quot; title=&quot;修改_config.yml&quot;&gt;&lt;/a&gt;修改_config.yml&lt;/h1&gt;&lt;p&gt;修改Next主题配置文件_config.yml，修改
-      
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
   </entry>
   
